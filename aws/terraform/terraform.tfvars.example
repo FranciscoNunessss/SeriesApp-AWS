@@ -1,0 +1,20 @@
+aws_region     = "us-east-1"
+project_name   = "seriesapp"
+environment    = "dev"
+
+vpc_cidr             = "10.0.0.0/16"
+public_subnet_cidrs  = ["10.0.1.0/24", "10.0.2.0/24"]
+private_subnet_cidrs = ["10.0.10.0/24", "10.0.11.0/24"]
+
+db_instance_class    = "db.t3.micro"
+db_allocated_storage = 20
+db_name              = "series_db"
+db_username          = "postgres"
+
+postgres_version = "15.4"
+
+cors_origins = ["http://localhost:3000", "http://localhost:5173", "http://localhost:4200"]
+
+# IMPORTANTE: Mudar para o teu número de telemóvel (com código de país)
+# Exemplo: "+351912345678"
+admin_phone_number = "+1234567890"

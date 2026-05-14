@@ -1,21 +1,35 @@
-# Environment files
+# ============================================
+# ENVIRONMENT & SECRETS
+# ============================================
 .env
 .env.*
 !.env.example
 !.env.sample
+.env.local
+.env.*.local
+secrets.json
+credentials.json
+*.pem
+*.key
 
-# Python cache and bytecode
+# ============================================
+# PYTHON
+# ============================================
+# Cache and bytecode
 __pycache__/
 *.py[cod]
 *$py.class
+*.so
 
-# Python virtual environments
+# Virtual environments
 .venv/
 venv/
 env/
 ENV/
+env.bak/
+venv.bak/
 
-# Python tooling and test artifacts
+# Python tooling
 .pytest_cache/
 .mypy_cache/
 .ruff_cache/
@@ -27,20 +41,29 @@ ENV/
 .coverage.*
 htmlcov/
 coverage/
+*.cover
 
-# Python packaging/build outputs
+# Build artifacts
 build/
 dist/
 *.egg-info/
+*.egg
 pip-wheel-metadata/
+*.whl
 
-# Node / frontend dependencies and builds
+# ============================================
+# NODE & FRONTEND
+# ============================================
 node_modules/
 frontend/node_modules/
 frontend/dist/
+frontend/build/
 frontend/.vite/
 frontend/.turbo/
 frontend/.cache/
+frontend/.next/
+frontend/.nuxt/
+frontend/coverage/
 .pnpm-store/
 .npm/
 .yarn/
@@ -48,26 +71,200 @@ frontend/.cache/
 .yarn/unplugged/
 .yarn/build-state.yml
 .yarn/install-state.gz
+pnpm-lock.yaml
+package-lock.json
 
-# Logs
+# ============================================
+# TERRAFORM & AWS
+# ============================================
+aws/terraform/.terraform/
+aws/terraform/.terraform.lock.hcl
+aws/terraform/terraform.tfstate
+aws/terraform/terraform.tfstate.*
+aws/terraform/tfplan
+aws/terraform/tfplan.json
+aws/terraform/crash.log
+aws/terraform/override.tf
+aws/terraform/override.tf.json
+aws/terraform/*_override.tf
+aws/terraform/*_override.tf.json
+aws/terraform/terraform.tfvars
+!aws/terraform/terraform.tfvars.example
+aws/terraform/.terraformrc
+aws/terraform/terraform.rc
+aws/terraform/outputs.json
+
+# Lambda packaging
+aws/lambda/packages/
+aws/lambda/*.zip
+aws/lambda/function.zip
+aws/lambda/daily-function.zip
+aws/lambda/__pycache__/
+
+# ============================================
+# LOGS
+# ============================================
 *.log
+logs/
+*.log.*
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
+lerna-debug.log*
+pip.log
 
-# IDE and editor files
+# CloudWatch & AWS Logs
+/logs/
+*.cwlog
+
+# ============================================
+# IDE & EDITOR
+# ============================================
 .vscode/
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+!.vscode/tasks.json
 .idea/
+.idea/*
 *.swp
 *.swo
 *.tmp
 *.temp
-
-# Docker and local overrides
-docker-compose.override.yml
-
-# OS files
+*.sublime-project
+*.sublime-workspace
 .DS_Store
+.AppleDouble
+.LSOverride
+*.iml
+.metals/
+.bloop/
+.env.local
+.env.local.php
+.AppleDouble
+.AppleDB_*
+.Spotlight-V100
+.Trashes
+
+# JetBrains
+*.iws
+.gradle
+.classpath
+.project
+
+# ============================================
+# OS & PLATFORM SPECIFIC
+# ============================================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
 Thumbs.db
 desktop.ini
+.directory
+$RECYCLE.BIN/
+
+# Windows
+*.lnk
+[Dd]esktop.ini
+.TemporaryItems
+
+# macOS
+*.swp
+*~
+._*
+.LSOverride
+
+# Linux
+.Xauthority
+
+# ============================================
+# DOCKER
+# ============================================
+docker-compose.override.yml
+.docker/
+docker-sync.yml
+
+# ============================================
+# BACKUP & TEMPORARY
+# ============================================
+*.bak
+*.backup
+*.swp
+*.swo
+*~
+.tmp/
+.temp/
+tmp/
+temp/
+*.orig
+
+# ============================================
+# DEVELOPMENT & TESTING
+# ============================================
+.pytest_cache/
+.hypothesis/
+*.prof
+.coverage
+coverage.xml
+htmlcov/
+
+# VS Code specific
+.devcontainer/
+.vscode/launch.json
+.vscode/extensions.json
+
+# ============================================
+# AWS SPECIFIC
+# ============================================
+# AWS credentials (should use IAM roles)
+~/.aws/credentials
+~/.aws/config
+*.aws.json
+
+# API Gateway & Lambda
+api-gateway-config.json
+lambda-config.json
+sam-tests/
+samconfig.toml
+
+# ============================================
+# PROJECT SPECIFIC
+# ============================================
+uv.lock.local
+.envrc
+.python-version
+direnv/
+pdm.lock
+Pipfile.lock
+
+# Misc
+*.swp
+.Thumbs.db
+.cache/
+.mypy.cache/
+.pytest.ini
+setup.cfg
+tox.ini
+
+# ============================================
+# BUILD OUTPUTS
+# ============================================
+dist/
+build/
+*.egg-info/
+.eggs/
+*.egg
+__pycache__/
+
+# ============================================
+# ALLOW EXCEPTIONS
+# ============================================
+!.github/
+!.gitignore
+!.gitkeep
+!frontend/.gitkeep
+!tests/.gitkeep
