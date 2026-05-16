@@ -67,7 +67,7 @@ A **SeriesApp** é uma aplicação cloud-native desenvolvida para AWS, utilizand
 - **daily_notifications.py**: Verificação diária de alertas
 
 ### 3. **RDS PostgreSQL**
-- **Engine**: PostgreSQL 15.4
+- **Engine**: PostgreSQL 15.18
 - **Instance Class**: db.t3.micro (dev) → db.t3.small/medium (prod)
 - **Storage**: 20GB gp3 (desenvolvimento)
 - **Backup**: 7 dias de retenção

@@ -43,7 +43,7 @@ variable "private_subnet_cidrs" {
 variable "postgres_version" {
   description = "PostgreSQL version"
   type        = string
-  default     = "15.4"
+  default     = "15.18"
 }
 
 variable "db_instance_class" {
@@ -84,4 +84,29 @@ variable "admin_phone_number" {
   type        = string
   sensitive   = true
   default     = "+1234567890"
+}
+
+# IAM / Lambda role configuration (useful for restricted lab accounts)
+variable "create_lambda_iam_resources" {
+  description = "Whether Terraform should create and manage Lambda IAM role and policies"
+  type        = bool
+  default     = true
+}
+
+variable "existing_lambda_role_arn" {
+  description = "Existing Lambda execution role ARN to use when create_lambda_iam_resources=false"
+  type        = string
+  default     = ""
+
+  validation {
+    condition     = var.create_lambda_iam_resources || length(trimspace(var.existing_lambda_role_arn)) > 0
+    error_message = "existing_lambda_role_arn must be provided when create_lambda_iam_resources is false."
+  }
+}
+
+# Secrets Manager configuration
+variable "db_secret_name" {
+  description = "Optional override for DB credentials secret name. Useful when original name is pending deletion."
+  type        = string
+  default     = null
 }

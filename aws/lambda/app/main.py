@@ -1,15 +1,12 @@
 import logging
-import time
 
 from fastapi import FastAPI, Request
 from fastapi.exceptions import RequestValidationError
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
-from sqlalchemy import text
-from sqlalchemy.exc import OperationalError
 
 from app.config import settings
-from app.database import Base, engine
+from app.database import init_db_with_retry
 from app.exceptions import DuplicateResourceError, ResourceNotFoundError
 
 from app.routers.users import router as users_router
@@ -20,29 +17,12 @@ from app.routers.watched import router as watched_router
 
 logger = logging.getLogger(__name__)
 
-
-def init_db_with_retry(max_attempts: int = 20, delay_seconds: int = 2) -> None:
-    for attempt in range(1, max_attempts + 1):
-        try:
-            with engine.connect() as connection:
-                connection.execute(text("SELECT 1"))
-            Base.metadata.create_all(bind=engine)
-            logger.info("Database connection established and schema initialized")
-            return
-        except OperationalError as exc:
-            if attempt == max_attempts:
-                logger.exception("Database is unavailable after retries")
-                raise
-            logger.warning(
-                "Database not ready yet (attempt %s/%s): %s",
-                attempt,
-                max_attempts,
-                exc,
-            )
-            time.sleep(delay_seconds)
-
-
-init_db_with_retry()
+# Inicializar database ao carregar o módulo
+try:
+    init_db_with_retry()
+except Exception as e:
+    logger.error(f"Failed to initialize database: {str(e)}")
+    # Em Lambda, isso pode falhar na inicialização mas tentar novamente em cada request
 
 
 def create_application() -> FastAPI:

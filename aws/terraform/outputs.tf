@@ -31,7 +31,7 @@ output "sns_topic_arn" {
 
 output "lambda_role_arn" {
   description = "Lambda IAM Role ARN"
-  value       = aws_iam_role.lambda_role.arn
+  value       = local.lambda_role_arn
 }
 
 output "lambda_security_group_id" {
@@ -42,6 +42,26 @@ output "lambda_security_group_id" {
 output "private_subnet_ids" {
   description = "Private subnet IDs for Lambda deployment"
   value       = module.networking.private_subnet_ids
+}
+
+output "main_lambda_function_name" {
+  description = "Main Lambda function name (FastAPI handler)"
+  value       = aws_lambda_function.main_handler.function_name
+}
+
+output "main_lambda_function_arn" {
+  description = "Main Lambda function ARN"
+  value       = aws_lambda_function.main_handler.arn
+}
+
+output "daily_lambda_function_name" {
+  description = "Daily notifications Lambda function name"
+  value       = aws_lambda_function.daily_notifications.function_name
+}
+
+output "daily_lambda_function_arn" {
+  description = "Daily notifications Lambda function ARN"
+  value       = aws_lambda_function.daily_notifications.arn
 }
 
 output "secrets_manager_secret_arn" {

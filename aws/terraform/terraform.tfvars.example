@@ -11,10 +11,14 @@ db_allocated_storage = 20
 db_name              = "series_db"
 db_username          = "postgres"
 
-postgres_version = "15.4"
+postgres_version = "15.18"
 
 cors_origins = ["http://localhost:3000", "http://localhost:5173", "http://localhost:4200"]
 
 # IMPORTANTE: Mudar para o teu número de telemóvel (com código de país)
 # Exemplo: "+351912345678"
 admin_phone_number = "+1234567890"
+
+# existing_lambda_role_arn    = "arn:aws:iam::864472218883:role/aws-service-role/rds.amazonaws.com/AWSServiceRoleForRDS"
+
+# db_secret_name = "seriesapp/db/credentials-v2"
