@@ -6,15 +6,3 @@
   from = "/*"
   to = "/index.html"
   status = 200
-[build]
-  base    = "frontend"
-  command = "pnpm install && pnpm build"
-  publish = "dist"
-
-[build.environment]
-  NODE_VERSION = "18"
-
-[[redirects]]
-  from   = "/*"
-  to     = "/index.html"
-  status = 200
