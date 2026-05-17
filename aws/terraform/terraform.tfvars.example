@@ -13,7 +13,12 @@ db_username          = "postgres"
 
 postgres_version = "15.18"
 
-cors_origins = ["http://localhost:3000", "http://localhost:5173", "http://localhost:4200"]
+cors_origins = [
+	"http://localhost:3000",
+	"http://localhost:5173",
+	"http://localhost:4200",
+	"https://reliable-granita-2d647e.netlify.app/"
+]
 
 # IMPORTANTE: Mudar para o teu número de telemóvel (com código de país)
 # Exemplo: "+351912345678"
