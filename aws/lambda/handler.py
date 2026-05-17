@@ -3,7 +3,7 @@ Lambda handler usando Mangum para adaptar FastAPI ao AWS Lambda + API Gateway HT
 """
 import sys
 import os
-#test
+#test1
 # Adicionar o diretório da app ao path para imports
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), 'app'))
 
